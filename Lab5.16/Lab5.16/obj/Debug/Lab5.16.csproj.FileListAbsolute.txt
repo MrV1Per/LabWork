@@ -1,7 +1,7 @@
+D:\SP projects\Lab5.16\Lab5.16\obj\Debug\Lab5.16.csprojAssemblyReference.cache
+D:\SP projects\Lab5.16\Lab5.16\obj\Debug\Lab5.16.csproj.CoreCompileInputs.cache
 D:\SP projects\Lab5.16\Lab5.16\bin\Debug\Lab5.16.exe.config
 D:\SP projects\Lab5.16\Lab5.16\bin\Debug\Lab5.16.exe
 D:\SP projects\Lab5.16\Lab5.16\bin\Debug\Lab5.16.pdb
-D:\SP projects\Lab5.16\Lab5.16\obj\Debug\Lab5.16.csprojAssemblyReference.cache
-D:\SP projects\Lab5.16\Lab5.16\obj\Debug\Lab5.16.csproj.CoreCompileInputs.cache
 D:\SP projects\Lab5.16\Lab5.16\obj\Debug\Lab5.16.exe
 D:\SP projects\Lab5.16\Lab5.16\obj\Debug\Lab5.16.pdb
