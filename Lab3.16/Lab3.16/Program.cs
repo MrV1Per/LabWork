@@ -4,7 +4,6 @@ namespace Lab3._16
 {
     class Program
     {
-
         /// <summary>
         /// To search for the factorial of a given variable
         /// </summary>
@@ -19,6 +18,7 @@ namespace Lab3._16
             else
                 return inputNum * Fact(inputNum - 1);
         }
+
         /// <summary>
         /// To find Step of increase variable X
         /// </summary>
@@ -30,6 +30,7 @@ namespace Lab3._16
             float step = (upper - lover) / 10;
             return step;
         }
+
         /// <summary>
         /// To find Sum of given expression
         /// </summary>
@@ -42,7 +43,7 @@ namespace Lab3._16
             float formulaX = lover, step = prog.FindStep(lover, upper);
             double finalSum = 0;
            
-                 Console.WriteLine($"\n|Number of iteration|         Value         |");
+            Console.WriteLine($"\n|Number of iteration|         Value         |");
             while (formulaN > 0)
             {
                 finalSum += Math.Pow(-1, formulaK) * (Math.Pow(1 + formulaX, 2 * formulaK) / prog.Fact(formulaK));
@@ -56,6 +57,7 @@ namespace Lab3._16
             }
             Console.WriteLine($"\n\nThe final sum is  -> {finalSum} \nWithout exponent  -> {finalSum.ToString("F0")}");
         }
+
         static void Main(string[] args)
         {
             Program prog = new Program();
