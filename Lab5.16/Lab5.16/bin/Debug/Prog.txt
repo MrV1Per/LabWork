@@ -1,26 +1,28 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-
+//The program should find comments(oneline, or multiline) in the code
 namespace Lab5._16
 {
     class Program
     {
-
         static void Main(string[] args)
         {
+            Program prog = new Program();
             Console.WriteLine("Hello dear User.");
-            string Path = "Prog.txt";
-            string[] InputCode = FileOpen(Path);
-            while (true)
+            string path = "Prog.txt";
+            string[] inputCode = prog.FileOpen(path);
+            bool isExit = true;
+            while (isExit)
             {
                 Console.Clear();
-                Console.WriteLine("This program will help you to find all comments in your code.\nPress (1) if you want to change file location (As default will be open cod of this program)\nPress (2) if you want to find 1 line commentaries\nPress (3) if you want to find multiline comentaries\nPress (4) if you wan to close this best program 0_0");
+                Console.WriteLine("This program will help you to find all comments in your code." +
+                    "\nPress (1) if you want to change file location (As default will be open cod of this program)" +
+                    "\nPress (2) if you want to find 1 line commentaries\nPress (3) if you want to find multiline comentaries" +
+                    "\nPress (4) if you want to close this best program 0_0");
                 Console.WriteLine("Press (1-4) to sellect actions");
-                byte SelectMenu = Convert.ToByte(Console.ReadLine());
+                byte selectMenu = Convert.ToByte(Console.ReadLine());
                 /*
                  * Switch-case:
                  * case1 -> Change path to file (Изменить путь к файлу)
@@ -28,68 +30,65 @@ namespace Lab5._16
                  * case3 -> Show all Multiline comments (Вывести все многострочные коментарии)
                  * case4 -> Close the program (Офнуть программу)
                 */
-                switch (SelectMenu)
+                switch (selectMenu)
                 {
                     case 1:
                         //Change file location (Изменить путь к файлу)
                         Console.WriteLine(@"Write full path to file\nExample (C:\Program Files (x86)\Microsoft Visual Studio\MyProgram\Prog.txt)");
-                        Path = Console.ReadLine();
+                        path = Console.ReadLine();
                         break;
                     case 2:
                         //Find 1 line commentaries (Вывести все однострочные коментарии)
                         Console.WriteLine("\n\nAll 1 line comments :");
-                        Find1LineComment(InputCode, Path);
-
+                        prog.Find1LineComment(inputCode, path);
                         break;
                     case 3:
                         //Find multiline comentaries (Вывести все многострочные коментарии)
                         Console.WriteLine("\n\nAll multiline comments :");
-                        FindMultiLineComment(InputCode, Path);
+                        prog.FindMultiLineComment(inputCode, path);
                         break;
                     case 4:
                         //Close best program (Офнуть программу)
                         Console.WriteLine("Program shuts down, press any key");
                         Console.ReadLine();
-                        return;
+                        isExit = false;
+                        break;
                     default:
                         Console.WriteLine("You entered a wrong number");
                         break;
                 }
             }
-
-
         }
 
         /// <summary>
         /// Open and read text from file (Открыть и прочесть весь код из файла)
         /// </summary>
-        /// <param name="Path">Path to file (Путь к файлу)</param>
+        /// <param name="path">path to file (Путь к файлу)</param>
         /// <returns>We return an array with the read code (Возвращает массив со считаным кодом)</returns>
-        private static string[] FileOpen(string Path)
+        private string[] FileOpen(string path)
         {
             Console.WriteLine("You want to see input code? Y|N");
-            string ShowCode = Console.ReadLine();
-            List<string> FullCode = new List<string> { };
+            string showCode = Console.ReadLine();
+            List<string> fullCode = new List<string> { };
             try
             {
-                using (StreamReader ReadCode = new StreamReader(Path))
+                using (StreamReader readCode = new StreamReader(path))
                 {
-
                     int i = 0;
-                    while (i < File.ReadAllLines(Path).Length)
+                    while (i < File.ReadAllLines(path).Length)
                     {
-                        FullCode.Add(ReadCode.ReadLine());
-                        if (ShowCode.ToUpper() == "Y")
+                        fullCode.Add(readCode.ReadLine());
+                        if (showCode.ToUpper() == "Y")
                         {
-                            Console.WriteLine(FullCode[i]);
+                            Console.WriteLine(fullCode[i]);
                         }
                         i++;
                     }
 
                     Console.WriteLine("File read successfully, Press any key to continue");
                     Console.ReadLine();
-                    string[] OutCode = FullCode.ToArray<string>();
-                    return OutCode;
+                    string[] outCode = fullCode.ToArray<string>();
+                    return outCode;
                 }
             }
             catch (Exception e)
@@ -101,12 +100,16 @@ namespace Lab5._16
             }
         }
 
-
-        private static void Find1LineComment(string[] InputCode, string Path)
+        /// <summary>
+        /// Find 1 line Comments
+        /// </summary>
+        /// <param name="inputCode">array with code of program</param>
+        /// <param name="path">path to file (Путь к файлу)</param>
+        private void Find1LineComment(string[] inputCode, string path)
         {
-            for (int i = 0; i < InputCode.Length; i++)
+            for (int i = 0; i < inputCode.Length; i++)
             {
-                string line = InputCode[i];
+                string line = inputCode[i];
                 /*
                  *Checking at the description of functions is displayed without indentation, 
                  * if the line start with /// then we print it to the console, and if with //, 
@@ -124,14 +127,17 @@ namespace Lab5._16
             Console.ReadLine();
         }
 
-
-
-        private static void FindMultiLineComment(string[] InputCode, string Path)
+        /// <summary>
+        /// Find Multiline Comments
+        /// </summary>
+        /// <param name="inputCode">array with code of program</param>
+        /// <param name="path">path to file (Путь к файлу)</param>
+        private void FindMultiLineComment(string[] inputCode, string path)
         {
             int i = 0;
-            while(i < InputCode.Length)
+            while(i < inputCode.Length)
             {
-                string line = InputCode[i];
+                string line = inputCode[i];
 
                  /*
                   * If the line start with (/*), then we print all subsubsequents lines until we get to (* /) 
@@ -139,10 +145,10 @@ namespace Lab5._16
                  */
                 if (line.Trim().StartsWith("/*"))
                 {
-                    Console.WriteLine("");
-                    while(i < InputCode.Length)
+                    Console.WriteLine();
+                    while(i < inputCode.Length)
                     {
-                        line = InputCode[i];
+                        line = inputCode[i];
                         if(line.Trim().StartsWith("*/"))
                         {
                             Console.WriteLine(line.Trim());
