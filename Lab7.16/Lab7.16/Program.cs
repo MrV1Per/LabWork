@@ -8,7 +8,8 @@ namespace Lab7._16
         static void Main(string[] args)
         {
             //Эта программа поможет найти строку в матрице, в которой все елементы делятся на 3 без остачи
-            Console.WriteLine("Hello dear user This program will help you find a row in the matrix \nin which all elements are divided by 3 without remainder");
+            Console.WriteLine("Hello dear user This program will help you find a row in the matrix " +
+                "\nin which all elements are divided by 3 without remainder");
             byte matrixSize = byte.Parse(EzInterface("\nEnter size of matrix (Only numbers)"));
             Console.Clear();
             FindLineWithNums(FillMatrix(matrixSize), matrixSize);
@@ -43,12 +44,14 @@ namespace Lab7._16
         /// <summary>
         /// Creating and fill a matrix (Создание и заполнение матрицы)
         /// </summary>
-        /// <returns>Returns a filled integer matrix (2 dimensional array) (Возврашщает заполненую целочисленнуюматрицу (2 мерный массив))</returns>
+        /// <returns>Returns a filled integer matrix (2 dimensional array) 
+        /// (Возврашщает заполненую целочисленнуюматрицу (2 мерный массив))</returns>
         private static int[,] FillMatrix(byte matrixSize)
         {
             int[,] intArray = new int[matrixSize, matrixSize];
 
-            byte menu = Convert.ToByte(EzInterface("1          => Fill matrix automatically (Заполнить матрицу автоматичесски)\nAny number => Fill matrix manually (Любая другая кнопка чтобы заполнить матрицу вручную)"));
+            byte menu = Convert.ToByte(EzInterface("1          => Fill matrix automatically (Заполнить матрицу автоматичесски)" +
+                "\nAny number => Fill matrix manually (Любая другая кнопка чтобы заполнить матрицу вручную)"));
 
             bool autoFill = menu == 1 ? true : false;
             intArray = autoFill ? AutoFillMatrixx(intArray, matrixSize) : ManualFillMatrixx(intArray, matrixSize);
@@ -90,7 +93,8 @@ namespace Lab7._16
         /// <returns>Returns a filled array (Возвращает заполненый массив)</returns>
         private static int[,] ManualFillMatrixx(int[,] intArray, byte matrixSize)
         {
-            Console.WriteLine("Enter the numbers one by one, and press Enter to fill the array \nПоочередно вводите числа, и нажиайте ентер для заполнения массива");
+            Console.WriteLine("Enter the numbers one by one, and press Enter to fill the array " +
+                "\nПоочередно вводите числа, и нажиайте ентер для заполнения массива");
             Console.Clear();
             for (byte matrixRow = 0; matrixRow < matrixSize; matrixRow++)
             {
