@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 
 namespace Lab7._16
@@ -12,32 +9,32 @@ namespace Lab7._16
         {
             //Эта программа поможет найти строку в матрице, в которой все елементы делятся на 3 без остачи
             Console.WriteLine("Hello dear user This program will help you find a row in the matrix \nin which all elements are divided by 3 without remainder");
-            byte MatrixSize = byte.Parse(EzInterface("\nEnter size of matrix (Only numbers)"));
+            byte matrixSize = byte.Parse(EzInterface("\nEnter size of matrix (Only numbers)"));
             Console.Clear();
-            FindLineWithNums(FillMatrix(MatrixSize), MatrixSize);
+            FindLineWithNums(FillMatrix(matrixSize), matrixSize);
 
             Console.ReadLine();
         }
 
         #region FindLineWithNums
-        private static void FindLineWithNums (int[,] IntArray, byte MatrixSize)
+        private static void FindLineWithNums(int[,] intArray, byte matrixSize)
         {
-            for(byte MatrixRow = 0; MatrixRow < MatrixSize; MatrixRow++)
+            for (byte matrixRow = 0; matrixRow < matrixSize; matrixRow++)
             {
-                byte Num = 0;
-                for(byte MatrixColum = 0; MatrixColum <= MatrixSize; MatrixColum++)
+                byte num = 0;
+                for (byte matrixColum = 0; matrixColum <= matrixSize; matrixColum++)
                 {
-                    if (Num == MatrixSize)
+                    if (num == matrixSize)
                     {
-                        Print1Line(IntArray, MatrixSize, MatrixRow);
+                        Print1Line(intArray, matrixSize, matrixRow);
                     }
-                    else if (IntArray[MatrixRow, MatrixColum] % 3 == 0)
-                        Num++;
+                    else if (intArray[matrixRow, matrixColum] % 3 == 0)
+                        num++;
                     else
                         break;
-                        
+
                 }
-                Num = 0;
+                num = 0;
             }
         }
         #endregion
@@ -47,15 +44,15 @@ namespace Lab7._16
         /// Creating and fill a matrix (Создание и заполнение матрицы)
         /// </summary>
         /// <returns>Returns a filled integer matrix (2 dimensional array) (Возврашщает заполненую целочисленнуюматрицу (2 мерный массив))</returns>
-        private static int[,] FillMatrix (byte MatrixSize)
+        private static int[,] FillMatrix(byte matrixSize)
         {
-            int[,] IntArray = new int[MatrixSize, MatrixSize];
+            int[,] intArray = new int[matrixSize, matrixSize];
 
-            byte Menu = Convert.ToByte(EzInterface("1          => Fill matrix automatically (Заполнить матрицу автоматичесски)\nAny number => Fill matrix manually (Любая другая кнопка чтобы заполнить матрицу вручную)"));
+            byte menu = Convert.ToByte(EzInterface("1          => Fill matrix automatically (Заполнить матрицу автоматичесски)\nAny number => Fill matrix manually (Любая другая кнопка чтобы заполнить матрицу вручную)"));
 
-            bool AutoFill = Menu == 1 ? true : false;
-            IntArray = AutoFill ? AutoFillMatrixx(IntArray, MatrixSize) : ManualFillMatrixx(IntArray, MatrixSize);
-            return IntArray;
+            bool autoFill = menu == 1 ? true : false;
+            intArray = autoFill ? AutoFillMatrixx(intArray, matrixSize) : ManualFillMatrixx(intArray, matrixSize);
+            return intArray;
         }
         #endregion
 
@@ -63,24 +60,24 @@ namespace Lab7._16
         /// <summary>
         /// Automatically fills the matrix (Автоматичесски заполнет матрицу)
         /// </summary>
-        /// <param name="IntArray">Array of numbers (Массив чисел)</param>
-        /// <param name="MatrixSize">Array size (Размер массива)</param>
-        private static int[,] AutoFillMatrixx(int[,] IntArray, byte MatrixSize)
+        /// <param name="intArray">Array of numbers (Массив чисел)</param>
+        /// <param name="matrixSize">Array size (Размер массива)</param>
+        private static int[,] AutoFillMatrixx(int[,] intArray, byte matrixSize)
         {
             Console.Clear();
-            for (byte MatrixRow = 0; MatrixRow < MatrixSize; MatrixRow++)
+            for (byte matrixRow = 0; matrixRow < matrixSize; matrixRow++)
             {
-                for(byte MatrixColum = 0; MatrixColum < MatrixSize; MatrixColum++)
+                for (byte matrixColum = 0; matrixColum < matrixSize; matrixColum++)
                 {
                     Random rand = new Random();
                     Thread.Sleep(200);
-                    IntArray[MatrixRow, MatrixColum] = rand.Next(15);
-                    Console.Write($"{IntArray[MatrixRow, MatrixColum]} \t");
+                    intArray[matrixRow, matrixColum] = rand.Next(15);
+                    Console.Write($"{intArray[matrixRow, matrixColum]} \t");
                 }
                 Console.WriteLine();
             }
             Console.WriteLine("If nothing is output to the console, then not a single line satisfies the parameters");
-            return IntArray;
+            return intArray;
         }
         #endregion
 
@@ -88,34 +85,34 @@ namespace Lab7._16
         /// <summary>
         /// Manual fills the matrix (Ручное заполнение матрицы)
         /// </summary>
-        /// <param name="IntArray">Array of numbers (Массив чисел)</param>
-        /// <param name="MatrixSize">Array size (Размер массива)</param>
+        /// <param name="intArray">Array of numbers (Массив чисел)</param>
+        /// <param name="matrixSize">Array size (Размер массива)</param>
         /// <returns>Returns a filled array (Возвращает заполненый массив)</returns>
-        private static int[,] ManualFillMatrixx(int[,] IntArray, byte MatrixSize)
+        private static int[,] ManualFillMatrixx(int[,] intArray, byte matrixSize)
         {
             Console.WriteLine("Enter the numbers one by one, and press Enter to fill the array \nПоочередно вводите числа, и нажиайте ентер для заполнения массива");
             Console.Clear();
-            for (byte MatrixRow = 0; MatrixRow < MatrixSize; MatrixRow++)
+            for (byte matrixRow = 0; matrixRow < matrixSize; matrixRow++)
             {
-                for (byte MatrixColum = 0; MatrixColum < MatrixSize; MatrixColum++)
+                for (byte matrixColum = 0; matrixColum < matrixSize; matrixColum++)
                 {
-                    Console.Write($"Matrix [{MatrixRow}][{MatrixColum}] => ");
-                    IntArray[MatrixRow, MatrixColum] = int.Parse(Console.ReadLine());
+                    Console.Write($"Matrix [{matrixRow}][{matrixColum}] => ");
+                    intArray[matrixRow, matrixColum] = int.Parse(Console.ReadLine());
                 }
                 Console.WriteLine();
             }
             Console.Clear();
             Console.WriteLine("The resulting matrix:");
-            for (byte MatrixRow = 0; MatrixRow < MatrixSize; MatrixRow++)
+            for (byte matrixRow = 0; matrixRow < matrixSize; matrixRow++)
             {
-                for (byte MatrixColum = 0; MatrixColum < MatrixSize; MatrixColum++)
+                for (byte matrixColum = 0; matrixColum < matrixSize; matrixColum++)
                 {
-                    Console.Write($"{IntArray[MatrixRow, MatrixColum]} \t");
+                    Console.Write($"{intArray[matrixRow, matrixColum]} \t");
                 }
                 Console.WriteLine();
             }
             Console.WriteLine("If nothing is output to the console, then not a single line satisfies the parameters");
-            return IntArray;
+            return intArray;
         }
         #endregion
 
@@ -123,23 +120,23 @@ namespace Lab7._16
         /// <summary>
         /// Facilitates user interaction
         /// </summary>
-        /// <param name="Massage">Message to be displayed</param>
+        /// <param name="massage">Message to be displayed</param>
         /// <returns>Returns the text entered by the user</returns>
-        private static string EzInterface(string Massage)
+        private static string EzInterface(string massage)
         {
-            Console.WriteLine(Massage);
-            Massage = Console.ReadLine();
-            return Massage;
+            Console.WriteLine(massage);
+            massage = Console.ReadLine();
+            return massage;
         }
         #endregion
 
         #region Print1Line
-        private static void Print1Line(int[,] IntArray, byte MatrixSize, byte LineNum)
+        private static void Print1Line(int[,] intArray, byte matrixSize, byte lineNum)
         {
-            Console.Write ($"\nLine {LineNum} => ");
-            for (byte i = 0; i < MatrixSize; i++)
+            Console.Write($"\nLine {lineNum} => ");
+            for (byte i = 0; i < matrixSize; i++)
             {
-                Console.Write($"{IntArray[LineNum, i]} ");
+                Console.Write($"{intArray[lineNum, i]} ");
             }
             Console.WriteLine();
         }
