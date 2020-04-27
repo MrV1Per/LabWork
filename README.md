@@ -1,1 +1,3 @@
-# LabWork
+#Lab9.16
+EN -> To develop a program for forming a stack, where positive integers entered from the keyboard get in the way. The input process should stop as soon as a negative number appears among the input numbers. After that, the program should display the contents of the stack on the terminal screen, while the order of the displayed numbers should be the opposite of the sequence of their input.                    
+RU -> Разработать программу формирования стека, куда помешаются целые положительные числа, вводимые с клавиатуры. Процесс ввода должен прекращаться, как только среди вводимых чисел появляется отрицательное число. После этого программа должна вывести на экран терминала содержимое стека, при этом порядок выводимых чисел должен быть обратным по сравнению с последовательностью их ввода.
